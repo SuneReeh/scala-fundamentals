@@ -2,11 +2,7 @@ package com.h2.entities
 
 import java.time.LocalDate
 
-class Customer(f: String, l: String, e: String, dob: LocalDate) {
-  val first: String = f
-  val last: String = l
-  val email: String = e
-  val dateOfBirth: LocalDate = dob
-
-  override def toString: String = first + "," + last
+class Customer(val first: String, val last: String,
+               val email: Email, val dateOfBirth: LocalDate) {
+  override def toString: String = s"$last, $first => $email"
 }
