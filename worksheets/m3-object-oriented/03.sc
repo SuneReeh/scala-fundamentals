@@ -12,9 +12,9 @@ val bobMartin = new Employee
 bobMartin.first = "Bob"
 bobMartin.last = "Martin"
 
-bobMartin
+println(bobMartin)
 
 bobMartin.first = "Amy"
 bobMartin.last = "Jones"
 
-bobMartin
+println(bobMartin)

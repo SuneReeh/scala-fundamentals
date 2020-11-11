@@ -1,3 +1,6 @@
+
+import scala.language.`3.0-migration`
+
 /**
   * m3-object-oriented -> 01.sc
   */
@@ -10,9 +13,13 @@ var amyJones = new Employee
 amyJones.first = "Amy"
 amyJones.last = "Jones"
 
+println(amyJones.hashCode().toHexString)
+
 var bobMartin = new Employee
 bobMartin.first = "Bob"
 bobMartin.last = "Martin"
+
+println(bobMartin.hashCode().toHexString)
 
 var taylorJackson = new Employee
 taylorJackson.first = "Taylor"

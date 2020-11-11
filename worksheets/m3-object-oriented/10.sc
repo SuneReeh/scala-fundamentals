@@ -1,12 +1,12 @@
 /**
   * m3-object-oriented -> 10.sc
   */
-abstract class Employee {
+trait Employee {
   val first: String
   val last: String
 }
 
-abstract class DepartmentEmployee extends Employee {
+trait DepartmentEmployee extends Employee {
   private val secret = "Big Secret!"
   val department: String
   val departmentCode: String
@@ -37,7 +37,7 @@ val rnDEmployee = new RnDEmployee("Amy", "Jones")
 val marketingEmployee = new MarketingEmployee("Bob", "Martin")
 
 /* Composition Example */
-abstract class Company {
+trait Company {
   val name: String
   val numberOfEmployees: Int
   val employees: Set[Employee]
