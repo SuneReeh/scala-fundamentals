@@ -1,6 +1,6 @@
 import java.time.LocalDate
 
-import main.scala.com.h2.entities._
+import com.h2.entities._
 
 object BankOfScala {
   def main(args: Array[String]): Unit = {

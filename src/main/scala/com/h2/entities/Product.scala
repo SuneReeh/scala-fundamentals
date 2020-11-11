@@ -1,4 +1,4 @@
-package main.scala.com.h2.entities
+package com.h2.entities
 
 abstract class Product {
   val name: String

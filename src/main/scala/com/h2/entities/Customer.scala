@@ -1,4 +1,4 @@
-package main.scala.com.h2.entities
+package com.h2.entities
 
 import java.time.LocalDate
 
