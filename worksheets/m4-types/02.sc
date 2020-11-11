@@ -2,7 +2,7 @@
 val color = "White"
 val price = 10.23
 
-print("The price for " + color + " poster is " + price)
+println("The price for " + color + " poster is " + price)
 
 /* String interpolator */
 println(s"The price for the $color poster is $price")
@@ -16,7 +16,7 @@ println(s"The price of ${p.width}x${p.height} ${p.color} poster is ${p.price}")
 
 /* Raw interpolator */
 println("I treat escape literals (\\ \\ \\ -> print 3) differently")
-println(raw"I * DO NOT * treat escape literals (\\ \\ \\ -> print 6) differently")
+println(raw"I * DO NOT * treat escape literals (\\ \\ \\ -> print 6) differently,${'\n'}but still interpolate")
 
 /* f-string interpolator */
 println(math.E)

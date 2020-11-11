@@ -8,15 +8,17 @@ val anotherWaySum = i1.+(i2)
 val multiply = i1 * i2
 val divide = i2 / i1
 
+//import scala.language.postfixOps
+
 val s = "Hello World!"
-s indexOf 'o'
-s indexOf('o', 5)
+s.indexOf('o')
+s.indexOf('o', 5)
 
 /* Prefix operators */
 val negative = -100
 
 /* Postfix Operators */
-val toLong = 100 toLong
+val toLong = 100.toLong
 
 /* Create your own Prefix operator */
 class Text(val string: String) {
@@ -28,4 +30,4 @@ class Text(val string: String) {
 val text = new Text("wow")
 !text
 
-text toString // example of Postfix operator
+text.toString // example of Postfix operator

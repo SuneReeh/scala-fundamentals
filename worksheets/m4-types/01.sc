@@ -1,10 +1,10 @@
 /* Byte Type (must be in valid Byte range of values (-2^7 to 2^7 - 1, inclusive)) */
-val minByteValue: Byte = -128
-val maxByteValue: Byte = 127
+val minByteValue: Byte = Byte.MinValue
+val maxByteValue: Byte = Byte.MaxValue
 
 /* Short Type (must be in valid Short range of values (-2^15 to 2^15 - 1, inclusive)) */
-val minShortValue: Short = -32768
-val maxShortValue: Short = 32767
+val minShortValue: Short = Short.MinValue
+val maxShortValue: Short = Short.MaxValue
 
 /* Integer Type */
 val ten = 10
