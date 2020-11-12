@@ -1,16 +1,16 @@
 package com.h2.entities
 
 class Dollars(val amount: Int) extends AnyVal {
-  def +(value: Int) = Dollars(amount + value)
+  def +(dollars: Dollars): Dollars = Dollars(amount + dollars.amount)
   
-  def -(value: Int) = Dollars(amount - value)
+  def -(dollars: Dollars): Dollars = Dollars(amount - dollars.amount)
   
-  def >(value: Int) = amount > value
-  def >=(value: Int) = amount >= value
-  def <(value: Int) = amount > value
-  def <=(value: Int) = amount >= value
+  def >(dollars: Dollars): Boolean = amount > dollars.amount
+  def >=(dollars: Dollars): Boolean = amount >= dollars.amount
+  def <(dollars: Dollars): Boolean = amount > dollars.amount
+  def <=(dollars: Dollars): Boolean = amount >= dollars.amount
 
-  override def toString(): String = "$" + amount
+  override def toString: String = "$" + amount
 }
 
 object Dollars {
