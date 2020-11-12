@@ -1,4 +1,4 @@
-def transform(numbers: Seq[Int], f: Int => Int) = numbers.map(number => f(number))
+def transform(numbers: Seq[Int], f: Int => Int) = numbers.map(f)
 
 val someNumbers = Seq(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
 

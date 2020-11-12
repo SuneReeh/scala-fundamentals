@@ -25,7 +25,7 @@ calculateSum(Seq(1,2,3,4,5,6,7,8,9,10))
 case2Sum
 
 /* case 3: the free variable is a local variable of a function */
-def multiplier(factor: Int) = (x: Int) => x * factor
+def multiplier(factor: Int)(x: Int) = x * factor
 val double = multiplier(2)
 val triple = multiplier(3)
 

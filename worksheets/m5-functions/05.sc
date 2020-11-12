@@ -4,7 +4,7 @@ def sum(a: Int, b: Int, c: Int) = a + b + c
 val s1 = sum(1, 2, 3)
 
 /* case 2: when one argument is not supplied */
-val s2 = sum(_: Int, 2, 3)
+val s2 = sum(_, 2, 3)
 val s3 = sum(1, _: Int, 3)
 val s4 = sum(1, 2, _: Int)
 
@@ -14,7 +14,7 @@ s4(3)
 
 /* case 3: when 2 arguments are not applied */
 val s5 = sum(_: Int, _: Int, 3)
-val s6 = sum(1, _: Int, _: Int)
+val s6 = sum(1, _, _)
 s5(1, 2)
 s6(2, 3)
 
