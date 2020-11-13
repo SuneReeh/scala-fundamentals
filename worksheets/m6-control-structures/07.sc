@@ -3,7 +3,6 @@ def assertTrue(predicate: => Boolean): Boolean = predicate
 assertTrue(12 > 10)
 assertTrue(12 + 34 - 12 < 30)
 
-
 /* code evaluated before being passed to function */
 def ifEval(predicate: Boolean,
            ifTrue: String,
@@ -23,3 +22,17 @@ ifByName(1 > 0,
   {println("true branch executed"); "TRUE"},
   {println("false branch executed"); "FALSE"}
 )
+
+//Executed each time called
+def deffun: Boolean = {
+  println("Test deffun")
+  true
+}
+//Executed once and stored
+val valfun: Boolean = {
+  println("Test valfun")
+  true
+}
+deffun
+valfun
+deffun

@@ -4,12 +4,20 @@ numbers.foreach(n => println(n))
 
 numbers.foreach { n => println(n) }
 
+numbers.foreach(println)
+
 numbers.foreach { n =>
   val double = n * 2
   println(double)
 }
 
-def time(n: Int, operation: Int => Unit): Unit = {
+
+if {
+  val l = numbers.length; l == 5
+} then
+  println("Success!")
+
+def time( operation: Int => Unit)(n: Int): Unit = {
   val startTime = System.currentTimeMillis()
   operation(n)
   val elapsedTime = System.currentTimeMillis() - startTime
@@ -22,4 +30,4 @@ val operation = (n: Int) => {
   println(s"Sum of first $n numbers is ${numbers.sum}")
 }
 
-time(100, operation)
+time( operation)(100)

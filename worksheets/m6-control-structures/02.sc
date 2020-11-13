@@ -41,10 +41,10 @@ def lowPriorityTasks = (task: Task) => task.priority == low
 def tasksInProgress = (task: Task) => task.status == inProgress
 def tasksTodo = (task: Task) => task.status == todo
 
-getTasksMatching(highPriorityTasks) foreach println
+getTasksMatching(highPriorityTasks).foreach(println)
 println("---------------------------")
-getTasksMatching(lowPriorityTasks) foreach println
+getTasksMatching(lowPriorityTasks).foreach(println)
 println("---------------------------")
-getTasksMatching(tasksInProgress) foreach println
+getTasksMatching(tasksInProgress).foreach(println)
 println("---------------------------")
-getTasksMatching(tasksTodo) foreach println
+getTasksMatching(tasksTodo).foreach(println)

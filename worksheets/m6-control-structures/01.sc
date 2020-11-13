@@ -29,7 +29,7 @@ val t5 = new Task("Reply to Marc", low, todo)
 val t6 = new Task("Get s** done!", high, done)
 val t7 = new Task("Book Accommodation for talk", medium, done)
 
-val tasks:Seq[Task] = Seq(t1, t2, t3, t4, t5, t6, t7)
+val tasks: Seq[Task] = Seq(t1, t2, t3, t4, t5, t6, t7)
 
 def getHighPriorityTasks = {
   for (task <- tasks; if task.priority == high)
@@ -46,8 +46,8 @@ def getTasksInProgress = {
     yield task
 }
 
-getHighPriorityTasks foreach println
+getHighPriorityTasks.foreach(println)
 println("---------------------------")
-getLowPriorityTasks foreach println
+getLowPriorityTasks.foreach(println)
 println("---------------------------")
-getTasksInProgress foreach println
+getTasksInProgress.foreach(println)
