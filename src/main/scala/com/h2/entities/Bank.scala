@@ -16,8 +16,6 @@ class Bank(val name: String,
   println(s"$name Established 2018.")
 
   /**
-    * // todo: (challenge?) how to disallow customer with same details?
-    *
     * @param first       : first name for the customer
     * @param last        : last name for the customer
     * @param email       : email for the customer in 'value@domain' format
@@ -34,13 +32,14 @@ class Bank(val name: String,
       LocalDate.of(year.toInt, month.toInt, day.toInt)
     
     val customer = new Customer(first, last, getEmail, getDateOfBirth)
+    for ((_, oldCustomer) <- customers) {
+      require(customer != oldCustomer, s"$customer is a dublicate of existing customer $oldCustomer")
+    }
     customers += (customer.id -> customer)
     customer.id
   }
 
   /**
-    * // todo: (challenge?) how to disallow products of same name?
-    *
     * @param name                        : name of the product
     * @param minBalance                  : the minimum balance required for the product
     * @param ratePerYear                 : the rate of interest earned by the end of the year
@@ -48,6 +47,9 @@ class Bank(val name: String,
     * @return the product id for the new product
     */
   def addNewDepositProduct(name: String, minBalance: Int, ratePerYear: Double, transactionsAllowedPerMonth: Int = 2): UUID = {
+    for ((_, oldProduct) <- depositProducts)
+      require(oldProduct.name.filter(_ != ' ').toLowerCase != name.filter(_ != ' ').toLowerCase, "Already has a product with that name.")
+    
     val product = name match {
       case "CoreChecking" => new CoreChecking(Dollars(minBalance), ratePerYear)
       case "StudentCheckings" => new StudentCheckings(Dollars(minBalance), ratePerYear)
@@ -59,8 +61,6 @@ class Bank(val name: String,
   }
 
   /**
-    * // todo: (challenge?) how to disallow products of same name?
-    *
     * @param name                        : name of the product
     * @param annualFee                   : the annual fee for the product
     * @param apr                         : the apr for the product
@@ -68,6 +68,9 @@ class Bank(val name: String,
     * @return the product id for the new product
     */
   def addNewLendingProduct(name: String, annualFee: Double, apr: Double, rewardsPercent: Double): UUID = {
+    for ((_, oldProduct) <- lendingProducts)
+      require(oldProduct.name.filter(_ != ' ').toLowerCase != name.filter(_ != ' ').toLowerCase, "Already has a product with that name.")
+    
     val product = name match {
       case "CreditCard" => new CreditCard(annualFee, apr, rewardsPercent)
     }
