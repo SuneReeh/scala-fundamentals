@@ -10,14 +10,14 @@ abstract class Product {
 }
 
 /* --------------------- Deposits Products -------------------- */
-abstract class Deposits extends Product {
+abstract class Deposit extends Product {
   val interestRatePerYear: Double
   val minimumBalancePerMonth: Dollars
 }
 
-abstract class Checkings extends Deposits
+abstract class Checkings extends Deposit
 
-abstract class Savings extends Deposits {
+abstract class Savings extends Deposit {
   val transactionsAllowedPerMonth: Int
 }
 

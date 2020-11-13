@@ -12,18 +12,18 @@ trait Account {
   override def toString = s"$customer with $product has a balance of $getBalance"
 }
 
-class DepositsAccount(val customer: Customer,
-                      val product: Deposits,
-                      private var balance: Dollars) extends Account {
+class DepositAccount(val customer: Customer,
+                     val product: Deposit,
+                     private var balance: Dollars) extends Account {
 
   def deposit(dollars: Dollars): Unit = {
-    require(dollars > Dollars(0), "Amount deposited should be greater than zero.")
+    require(dollars > Dollars.Zero, "Amount deposited should be greater than zero.")
     balance += dollars
     println(s"Deposited $dollars to $this.")
   }
 
   def withdraw(dollars: Dollars): Unit = {
-    require(dollars > Dollars(0) && balance >= dollars, "Amount withdrawn should be greater than zero and less than or equal to balance.")
+    require(dollars > Dollars.Zero && balance >= dollars, "Amount withdrawn should be greater than zero and less than or equal to balance.")
     balance -= dollars
     println(s"Withdrawn $dollars from $this.")
   }
@@ -36,13 +36,13 @@ class LendingAccount(val customer: Customer,
                      private var balance: Dollars) extends Account {
 
   def payBill(dollars: Dollars): Unit = {
-    require(dollars > Dollars(0), "The payment must be made for amount greater than zero.")
+    require(dollars > Dollars.Zero, "The payment must be made for amount greater than zero.")
     balance += dollars
     println(s"Paid bill of $dollars against $this.")
   }
 
   def withdraw(dollars: Dollars): Unit = {
-    require(dollars > Dollars(0), "The withdrawal amount must be greater than zero.")
+    require(dollars > Dollars.Zero, "The withdrawal amount must be greater than zero.")
     balance -= dollars
     println(s"Debiting $dollars from $this.")
   }
