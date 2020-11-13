@@ -1,6 +1,6 @@
 package com.h2.entities
 
-class Email(val value: String, val domain: String) {
+class Email(val value: String, val domain: String) extends Equals {
   override def toString: String = s"$value@$domain"
 
   def canEqual(other: Any): Boolean = other.isInstanceOf[Email]
