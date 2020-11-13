@@ -1,3 +1,5 @@
+import java.util.UUID
+
 import com.h2.entities._
 
 object BankOfScala {
@@ -16,6 +18,12 @@ object BankOfScala {
     println(s"Deposits Products Ids: $depositProductIds")
     println(s"LendingProductIds: $lendingProductIds")
 
+    def openAccount(productType: String)(customerID: UUID, productID: UUID)(amount: Dollars = Dollars(0)) = {
+      productType match {
+        case "Deposit" => bank.openDepositAccount(customerID, productID, amount)
+        case "Lending" => bank.openLendingAccount(customerID, productID, amount)
+      }
+    }
 
     /*
     Bank clerk opening the account.
@@ -24,7 +32,7 @@ object BankOfScala {
     val depositAccounts = for {
       c <- customerIds
       p <- depositProductIds
-    } yield bank.openDepositAccount(c, p, _: Dollars)
+    } yield openAccount("Deposit")(c,p)
 
     /* Depositing money into the accounts */
     val random = new scala.util.Random()
@@ -42,7 +50,7 @@ object BankOfScala {
     val lendingAccounts = for {
       c <- customerIds
       p <- lendingProductIds
-    } yield bank.openLendingAccount(c, p, _: Dollars)
+    } yield openAccount("Lending")(c,p)
     val lendingAccountIds = lendingAccounts.map(account => account(Dollars(random.nextInt(500))))
 
     /* logging */
@@ -54,14 +62,18 @@ object BankOfScala {
       Performing Deposit Accounts transactions
      */
     val randomAmount = new scala.util.Random(100)
-    depositAccountIds.foreach(bank.deposit(_, Dollars(1 + randomAmount.nextInt(100))))
-    depositAccountIds.foreach(bank.withdraw(_, Dollars(1 + randomAmount.nextInt(50))))
+    depositAccountIds.foreach{accountID =>
+      bank.deposit(accountID, Dollars(1 + randomAmount.nextInt(100)))
+      bank.withdraw(accountID, Dollars(1 + randomAmount.nextInt(50)))
+    }
 
     /*
       Performing Lending Accounts transactions
     */
-    lendingAccountIds.foreach(bank.useCreditCard(_, Dollars(1 + randomAmount.nextInt(500))))
-    lendingAccountIds.foreach(bank.payCreditCardBill(_, Dollars(1 + randomAmount.nextInt(100))))
+    lendingAccountIds.foreach { accountID =>
+      bank.useCreditCard(accountID, Dollars(1 + randomAmount.nextInt(500)))
+      bank.payCreditCardBill(accountID, Dollars(1 + randomAmount.nextInt(100)))
+    }
   }
 
   /* ------------------- Data ------------------- */
