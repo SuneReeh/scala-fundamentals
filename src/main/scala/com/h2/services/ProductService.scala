@@ -16,7 +16,7 @@ trait ProductService extends ProductDb {
   def addNewDepositProduct(name: String, minBalance: Int, ratePerYear: Double, transactionsAllowedPerMonth: Int = 2): UUID = {
     val product = name match {
       case "CoreChecking" => new CoreChecking(Dollars(minBalance), ratePerYear)
-      case "StudentCheckings" => new StudentCheckings(Dollars(minBalance), ratePerYear)
+      case "StudentChecking" => new StudentChecking(Dollars(minBalance), ratePerYear)
       case "RewardsSavings" => new RewardsSavings(Dollars(minBalance), ratePerYear, transactionsAllowedPerMonth)
     }
     saveDepositProduct(product)

@@ -2,29 +2,44 @@ package com.h2.entities
 
 import java.util.UUID
 
+enum TransactionType {
+  case In, Out
+}
+
+case class Transaction(customer: Customer, amount: Dollars, transactionType: TransactionType, accountCategory: AccountCategory)
+
+enum AccountCategory {
+  case DepositA, LendingA
+}
+
 trait Account {
   val id: UUID = UUID.randomUUID()
   val customer: Customer
   val product: Product
+  val category: AccountCategory
+  var transactions: Seq[Transaction] = Seq.empty
 
   def getBalance: Dollars
-  
+
   override def toString = s"$customer with $product has a balance of $getBalance"
 }
 
 class DepositAccount(val customer: Customer,
                      val product: Deposit,
                      private var balance: Dollars) extends Account {
+  override val category: AccountCategory = AccountCategory.DepositA
 
   def deposit(dollars: Dollars): Unit = {
     require(dollars > Dollars.Zero, "Amount deposited should be greater than zero.")
     balance += dollars
+    transactions = transactions :+ Transaction(customer, dollars, TransactionType.In, category)
     println(s"Deposited $dollars to $this.")
   }
 
   def withdraw(dollars: Dollars): Unit = {
     require(dollars > Dollars.Zero && balance >= dollars, "Amount withdrawn should be greater than zero and less than or equal to balance.")
     balance -= dollars
+    transactions = transactions :+ Transaction(customer, dollars, TransactionType.Out, category)
     println(s"Withdrawn $dollars from $this.")
   }
 
@@ -34,16 +49,19 @@ class DepositAccount(val customer: Customer,
 class LendingAccount(val customer: Customer,
                      val product: Lending,
                      private var balance: Dollars) extends Account {
+  override val category: AccountCategory = AccountCategory.LendingA
 
   def payBill(dollars: Dollars): Unit = {
     require(dollars > Dollars.Zero, "The payment must be made for amount greater than zero.")
     balance += dollars
+    transactions = transactions :+ Transaction(customer, dollars, TransactionType.In, category)
     println(s"Paid bill of $dollars against $this.")
   }
 
   def withdraw(dollars: Dollars): Unit = {
     require(dollars > Dollars.Zero, "The withdrawal amount must be greater than zero.")
     balance -= dollars
+    transactions = transactions :+ Transaction(customer, dollars, TransactionType.Out, category)
     println(s"Debiting $dollars from $this.")
   }
 

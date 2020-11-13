@@ -2,34 +2,40 @@ package com.h2.entities
 
 import java.util.UUID
 
-abstract class Product {
+enum ProductCategory extends java.lang.Enum[ProductCategory] {
+  case DepositP, LendingP
+}
+
+trait Product {
   val id: UUID = UUID.randomUUID()
+  val category: ProductCategory
   val name: String
 
   override def toString: String = "product=" + name
 }
 
 /* --------------------- Deposits Products -------------------- */
-abstract class Deposit extends Product {
+trait Deposit extends Product {
+  override val category: ProductCategory = ProductCategory.DepositP
   val interestRatePerYear: Double
   val minimumBalancePerMonth: Dollars
 }
 
-abstract class Checkings extends Deposit
+trait Checking extends Deposit
 
-abstract class Savings extends Deposit {
+trait Savings extends Deposit {
   val transactionsAllowedPerMonth: Int
 }
 
 /* ------ Checkings Products ------ */
 class CoreChecking(val minimumBalancePerMonth: Dollars,
-                   val interestRatePerYear: Double) extends Checkings {
+                   val interestRatePerYear: Double) extends Checking {
   println("Created Core Checking Product")
   override val name: String = "Core Checking"
 }
 
-class StudentCheckings(val minimumBalancePerMonth: Dollars,
-                       val interestRatePerYear: Double) extends Checkings {
+class StudentChecking(val minimumBalancePerMonth: Dollars,
+                      val interestRatePerYear: Double) extends Checking {
   println("Created Student Checking Product")
   override val name: String = "Student Checking"
 }
@@ -44,7 +50,8 @@ class RewardsSavings(val minimumBalancePerMonth: Dollars,
 
 
 /* --------------------- Lending Products -------------------- */
-abstract class Lending extends Product {
+trait Lending extends Product {
+  override val category: ProductCategory = ProductCategory.LendingP
   val annualFee: Double
   val apr: Double
   val rewardsPercent: Double
