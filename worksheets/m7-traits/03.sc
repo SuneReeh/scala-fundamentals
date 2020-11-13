@@ -1,4 +1,4 @@
-/** Extending classes and using Traits **/
+/** Extending classes and using Traits */
 
 trait Db {
   private var contents: Map[String, String] = Map.empty

@@ -1,4 +1,4 @@
-case class Event(id: Int, location: String, dayOfWeek: String, sessionTimeInSeconds: Integer, source: String)
+case class Event(id: Int, location: String, dayOfWeek: String, sessionTimeInSeconds: Int, source: String)
 
 val e1 = Event(1, "US", "Sun", 10, "Twitter")
 val e2 = Event(2, "China", "Mon", 15, "WeChat")
@@ -20,7 +20,7 @@ trait RichEventsInterface extends EventsInterface {
 
   def getUniqueSources: Set[String] = all.map(_.source).toSet
 
-  def getAverageSessionTimeInSeconds: Float = all.map(_.sessionTimeInSeconds.toInt).sum / all.size
+  def getAverageSessionTimeInSeconds: Float = all.map(_.sessionTimeInSeconds).sum.toFloat / all.size
 }
 
 class Events(val events: List[Event]) extends RichEventsInterface {

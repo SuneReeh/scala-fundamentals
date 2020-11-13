@@ -29,4 +29,4 @@ val bobAccountId = bank.openAccount(bobUserId)
 val amyAccountId = bank.openAccount(amyUserId)
 
 assert(bobAccountId == bank.getAccount(bobUserId).get, "Bob Account Id do not match")
-assert(amyAccountId == bank.getAccount(amyAccountId).get, "Amy Account Id do not match")
+assert(amyAccountId == bank.getAccount(amyUserId).get, "Amy Account Id do not match")

@@ -1,4 +1,4 @@
-/** Using Traits as Type **/
+/** Using Traits as Type */
 
 trait Db {
   private var contents: Map[String, String] = Map.empty
